@@ -1,4 +1,7 @@
+import { guardedExpression } from '@angular/compiler/src/render3/util';
 import { Component } from '@angular/core';
+import { NAVS } from './data';
+import { Navs } from './list';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,37 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ch0402';
+  navs = NAVS;
+
+  shouldShow = false;
+
+  score = 50;
+
+  s = true;
+
+  show() {
+    this.s = !this.s
+    return false;
+  }
+  onToggle() {
+    this.shouldShow = !this.shouldShow;
+    return false;
+  }
+
+  grade() {
+    return this.score / 10;
+  }
+
+  checknav: Navs | null = null;
+
+  changcss(n: Navs) {
+    this.checknav = n;
+    if (this.checknav.active) {
+      n.active = false;
+    } else {
+      n.active = true;
+    }
+  }
 }
+
+
